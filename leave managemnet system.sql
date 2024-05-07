@@ -23,11 +23,16 @@ INSERT INTO leave_details (emp_id, request_id, start_date, end_date, leave_type,
 VALUES (13579, 'LEAVE005', '2024-07-10', '2024-07-15', 'Study Leave', true);
 
 alter table leave_details add column username varchar(30);
+alter table leave_details add column is_active boolean;
+alter table leave_details add column no_of_leaves int;
+
 
 alter table leave_details modify emp_id int primary key;
 ALTER TABLE leave_details DROP PRIMARY KEY;
 ALTER TABLE leave_details MODIFY emp_id INT;
 ALTER TABLE leave_details MODIFY request_id INT PRIMARY KEY;
+ALTER TABLE leave_details
+Alter COLUMN is_active set default 1;
 
 
 
@@ -36,7 +41,10 @@ ALTER TABLE leave_details MODIFY request_id INT PRIMARY KEY;
 
 select * from leave_details;
 select * from leave_details where emp_id = 384594;
+select * from leave_details where emp_id = 284321 and is_active = 1;
+
+SELECT no_of_leaves FROM leave_details WHERE emp_id = 123456 and is_active = 1 and status = 1;
 
 UPDATE leave_details set username = 'kanoj' where emp_id = 12345;
-
+UPDATE leave_details set is_active = true;
 UPDATE leave_details set request_id = 005 where emp_id = 98765;
